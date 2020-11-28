@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heima.dao.IUserDao">
+    <!-- mapper标签namespace属性的取值必须是dao接口的全限定类名 -->
+    <!-- 配置查询所有 id要和IUserDao的方法名称一致 把结果集封装到com.heima.domain.User中 -->
+    <select id="findAll" resultType="com.heima.domain.User">
+        select * from user
+    </select>
+</mapper>

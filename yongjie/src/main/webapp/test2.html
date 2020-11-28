@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="dist/Chart.js"></script>
+
+</head>
+
+<body>
+<div style="width:1000px;height:900px">
+    <canvas id="myChart"></canvas>
+    <p id="pp"></p>
+</div>
+<script>
+    $(function () {
+
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: [
+                    'Red',
+                    'Yellow',
+                    'Blue'
+                ],
+                datasets: [{
+                    data: [10, 20, 30]
+                }],
+            },
+        });
+        myChart.canvas.parentNode.style.height = '900px';
+        myChart.canvas.parentNode.style.width = '1000px';
+    });
+
+</script>
+</body>
+</html>

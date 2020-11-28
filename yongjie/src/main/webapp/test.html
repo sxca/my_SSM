@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="dist/Chart.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+
+    <link rel="stylesheet" href="bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+    <script src="bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<style>
+
+    .title{
+        width:200px;
+        height:200px;
+        margin:0 auto;
+    }
+
+</style>
+</head>
+
+<body>
+
+
+<div style="width:1000px; height:600px; margin:0 auto;">
+    <canvas id="myChart1" ></canvas>
+    <canvas id="myChart2"></canvas>
+</div>
+
+<input type='text' placeholder="起始时间" class="form-control" id='datetimepicker1' style="width:200px; margin:0 auto;"/>
+<input type='text' placeholder="终止时间" class="form-control" id='datetimepicker2' style="width:200px; margin:0 auto;"/>
+
+<div class="title">
+    <button id="btn1" type="button" class="btn btn-info" >炉灰情况</button>
+    <button id="btn2" type="button" class="btn btn-info">人员工作情况</button>
+</div>
+
+<!--<button id="btn1">Primary</button>-->
+<!--<button id="btn2">second</button>-->
+
+<script>
+    $(function () {
+
+        var ctx = document.getElementById('myChart1');
+        var myChart1 = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['一号', '二号', '三号'],
+                datasets: [{
+                    label: "永杰铝业",
+                    data: [5000, 10000, 7000],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
+                    ],
+                    // borderColor: [
+                    //     'rgba(255, 99, 132, 1)',
+                    //     'rgba(54, 162, 235, 1)',
+                    //     'rgba(255, 206, 86, 1)',
+                    // ],
+                    // borderWidth: 1,
+                    // devicePixelRatio:window.devicePixelRatio
+                }]
+            },
+            // options: {
+            //     title: {
+            //         display: true,
+            //         text: 'Custom Chart Title'
+            //     }
+            // }
+            // options: {
+            //     scales: {
+            //         yAxes: [{
+            //             ticks: {
+            //                 beginAtZero: true
+            //             }
+            //         }]
+            //     }
+            // }
+        });
+        myChart1.canvas.parentNode.style.height = '600px';
+        myChart1.canvas.parentNode.style.width = '1000px';
+
+        var ctx = document.getElementById('myChart2');
+        var myChart2 = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: [
+                    '在场时间',
+                    '不在场时间',
+                ],
+                datasets: [{
+                    data: [10, 20],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        // 'rgba(255, 206, 86, 0.2)'
+                    ],
+                }],
+            },
+        });
+        myChart2.canvas.parentNode.style.height = '600px';
+        myChart2.canvas.parentNode.style.width = '1000px';
+        $("#myChart2").hide();
+        $("#myChart1").show();
+
+        $('#datetimepicker1').datetimepicker({
+            language:  'zh-CN',
+            autoclose: true,
+        });
+
+        $('#datetimepicker2').datetimepicker({
+            language:  'zh-CN',
+            autoclose: true,
+        });
+
+        $("#btn1").click(function(){
+            $("#myChart2").hide();
+            $("#myChart1").show();
+
+            myChart1.data.datasets[0].data = [10000, 15000, 6000];
+            myChart1.update();
+
+        });
+
+        $("#btn2").click(function () {
+            $("#myChart1").hide();
+            $("#myChart2").show();
+            myChart2.data.datasets[0].data = [100, 200];
+            myChart2.update();
+        });
+    })
+
+</script>
+</body>
+</html>

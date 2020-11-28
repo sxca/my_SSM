@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heima.dao.IUserDao">
+    <resultMap id="userAccountMap" type="com.heima.domain.User">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="address" column="address"></result>
+        <result property="sex" column="sex"></result>
+        <result property="birthday" column="birthday"></result>
+        <!-- 配置user对象中accounts集合的映射 -->
+        <collection property="accounts" ofType="com.heima.domain.Account" column="id" select="com.heima.dao.IAccountDao.findAccountByUid"></collection>
+    </resultMap>
+    <!-- mapper标签namespace属性的取值必须是dao接口的全限定类名 -->
+    <!-- 配置查询所有 id要和IUserDao的方法名称一致 把结果集封装到com.heima.domain.User中 -->
+    <select id="findAll" resultMap="userAccountMap">
+        select * FROM user;
+    </select>
+
+    <!-- 根据id查询用户 -->
+    <select id="findById" parameterType="java.lang.Integer" resultType="com.heima.domain.User">
+        select * from user where id = #{uid}
+    </select>
+
+
+</mapper>

@@ -37,7 +37,7 @@ public class Client {
         // 1.获取核心容器对象
         ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
         // ApplicationContext ac = new FileSystemXmlApplicationContext("C:\\Users\\Administrator\\Desktop\\bean.xml");
-//         2.根据id获取Bean对象的两种方式
+        // 2.根据id获取Bean对象的两种方式
         IAccountService as = (IAccountService)ac.getBean("accountService");
         IAccountDao adao = ac.getBean("accountDao", IAccountDao.class);
         System.out.println(as);
@@ -45,8 +45,8 @@ public class Client {
 
 
         //--------------BeanFactory----------------
-//        Resource resource = new ClassPathResource("bean.xml");
-//        BeanFactory factory = new XmlBeanFactory(resource);
-//        IAccountService as = (IAccountService)factory.getBean("accountService");
+        // Resource resource = new ClassPathResource("bean.xml");
+        // BeanFactory factory = new XmlBeanFactory(resource);
+        // IAccountService as = (IAccountService)factory.getBean("accountService");
     }
 }
